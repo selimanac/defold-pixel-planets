@@ -1,0 +1,63 @@
+local config = require("scripts.config")
+
+local planet = msg.url()
+local ring = msg.url()
+
+local planet_size = 0.0
+local planet_time_speed = 0.0
+local time = 1000.0
+
+local function set_seed()
+    go.set(planet, "generic.x", config.rseed)
+    go.set(ring, "generic.x", config.rseed)
+end
+
+local function set_pixel()
+    go.set(planet, "transform.y", config.rpixel)
+    go.set(ring, "transform.y", config.rpixel*3.0)
+    
+end
+
+local function set_rotation()
+    go.set(planet, "transform.z", config.rrot)
+    go.set(ring, "transform.z", config.rrot+0.7)
+end
+
+local function set_light()
+    go.set(planet, "lights.x", config.rlight.x)
+    go.set(planet, "lights.y", config.rlight.y)
+
+    go.set(ring, "lights.x", config.rlight.x)
+    go.set(ring, "lights.y", config.rlight.y)
+end
+
+function init(self)
+    planet = msg.url("gas_giant#gas_giant")
+    ring =  msg.url("ring#ring")
+
+    set_seed()
+    set_pixel()
+    set_rotation()
+
+    planet_size = go.get(planet, "transform.x")
+    planet_time_speed = go.get(planet, "generic.z")
+    planet_size = config.round(planet_size * 2.0) / planet_time_speed
+end
+
+function update(self, dt)
+    time = time + dt
+    go.set(planet, "generic.y", time * planet_size * 0.004)
+    go.set(ring, "generic.y", time * 314.15 * 0.004)
+end
+
+function on_message(self, message_id, message, sender)
+    if message_id == config.msg.set_planet_seed then
+        set_seed()
+    elseif message_id == config.msg.set_planet_pixel then
+        set_pixel()
+    elseif message_id == config.msg.set_planet_rotation then
+        set_rotation()
+    elseif message_id == config.msg.set_planet_light then
+        set_light()
+    end
+end

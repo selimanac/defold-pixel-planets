@@ -1,0 +1,14 @@
+name: "controls"
+tags: "controls"
+vertex_program: "/builtins/materials/gui.vp"
+fragment_program: "/builtins/materials/gui.fp"
+vertex_constants {
+  name: "view_proj"
+  type: CONSTANT_TYPE_VIEWPROJ
+  value {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 0.0
+  }
+}

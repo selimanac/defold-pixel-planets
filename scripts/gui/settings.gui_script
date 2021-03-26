@@ -1,0 +1,71 @@
+local config = require("scripts.config")
+local dropdown = require("scripts.gui.dropdown")
+local slider = require("scripts.gui.slider")
+local rnd_btn
+local rnd_label
+local pixel_slider = {}
+local pixel_slider_label
+local rotation_slider = {}
+
+local light_zone
+
+local set_light = false
+
+local function set_seed(is_init)
+    config.set_seed(rnd.number())
+    gui.set_text(rnd_label, config.seed)
+    if is_init then
+        return
+    end
+
+    msg.post(config.target_script, config.msg.set_planet_seed)
+end
+
+local function set_pixel(pixel)
+    pixel = math.floor(pixel)
+    gui.set_text(pixel_slider_label, "PIXELS: " .. pixel .. "X" .. pixel)
+    config.rpixel = pixel
+    msg.post(config.target_script, config.msg.set_planet_pixel)
+end
+
+local function set_rotation(rot)
+    config.rrot = rot
+    msg.post(config.target_script, config.msg.set_planet_rotation)
+end
+
+local function set_lights(_x, _y)
+    config.set_light(_x, _y)
+    msg.post(config.target_script, config.msg.set_planet_light)
+end
+
+function init(self)
+    msg.post(".", "acquire_input_focus")
+
+    rnd_btn = gui.get_node("rnd_btn")
+    rnd_label = gui.get_node("seed_txt")
+    light_zone = gui.get_node("light_zone")
+    pixel_slider_label = gui.get_node("pixel_slider/label")
+
+    set_seed(true)
+
+    pixel_slider = slider.new(100, "pixel_slider", 16, 100, set_pixel)
+    rotation_slider = slider.new(0, "rotation_slider", 0, 6.28, set_rotation)
+
+    dropdown.init(1)
+end
+
+function on_input(self, action_id, action)
+    dropdown.update(action, action_id)
+    pixel_slider:update(action, action_id)
+    rotation_slider:update(action, action_id)
+
+    if action_id == config.mouse_click and action.pressed then
+        if gui.pick_node(rnd_btn, action.x, action.y) then
+            set_seed()
+        end
+    end
+
+    if action_id == config.mouse_click and gui.pick_node(light_zone, action.x, action.y) then
+        set_lights(action.x, action.y)
+    end
+end

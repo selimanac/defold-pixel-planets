@@ -1,0 +1,8 @@
+mesh: "/builtins/assets/meshes/quad.dae"
+material: "/components/planets/gas_giant/gas_giant.material"
+textures: "/components/planets/gas_giant/gas_giant_colors.png"
+textures: "/components/planets/gas_giant/gas_giant_dark_colors.png"
+skeleton: ""
+animations: ""
+default_animation: ""
+name: "unnamed"

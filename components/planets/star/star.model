@@ -1,0 +1,7 @@
+mesh: "/builtins/assets/meshes/quad.dae"
+material: "/components/planets/star/star.material"
+textures: "/components/planets/star/star.png"
+skeleton: ""
+animations: ""
+default_animation: ""
+name: "unnamed"

@@ -1,0 +1,51 @@
+local config = require("scripts.config")
+
+local planet = msg.url()
+local planet_size = 0.0
+local planet_time_speed = 0.0
+local time = 1000.0
+
+local function set_seed()
+    go.set(planet, "generic.x", config.rseed)
+end
+
+local function set_pixel()
+    go.set(planet, "transform.y", config.rpixel)
+end
+
+local function set_rotation()
+    go.set(planet, "transform.z", config.rrot)
+end
+
+local function set_light()
+    go.set(planet, "lights.x", config.rlight.x)
+    go.set(planet, "lights.y", config.rlight.y)
+end
+
+function init(self)
+    planet = msg.url("dry_terran#dry_terran")
+    set_seed()
+    set_pixel()
+    set_rotation()
+
+    planet_size = go.get(planet, "transform.x")
+    planet_time_speed = go.get(planet, "generic.z")
+    planet_size = config.round(planet_size * 2.0) / planet_time_speed
+end
+
+function update(self, dt)
+    time = time + dt
+    go.set(planet, "generic.y", time * planet_size * 0.02)
+end
+
+function on_message(self, message_id, message, sender)
+    if message_id == config.msg.set_planet_seed then
+        set_seed()
+    elseif message_id == config.msg.set_planet_pixel then
+        set_pixel()
+    elseif message_id == config.msg.set_planet_rotation then
+        set_rotation()
+    elseif message_id == config.msg.set_planet_light then
+        set_light()
+    end
+end

@@ -1,0 +1,6 @@
+mesh: "/builtins/assets/meshes/quad_2x2.dae"
+material: "/components/lowrez/lowrez.material"
+skeleton: ""
+animations: ""
+default_animation: ""
+name: "unnamed"

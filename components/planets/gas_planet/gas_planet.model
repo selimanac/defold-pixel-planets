@@ -1,0 +1,6 @@
+mesh: "/builtins/assets/meshes/quad.dae"
+material: "/components/planets/gas_planet/gas_planet.material"
+skeleton: ""
+animations: ""
+default_animation: ""
+name: "unnamed"

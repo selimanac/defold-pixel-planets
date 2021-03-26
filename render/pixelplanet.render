@@ -1,0 +1,5 @@
+script: "/render/pixelplanet.render_script"
+materials {
+  name: "lowrez"
+  material: "/components/lowrez/lowrez.material"
+}

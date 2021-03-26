@@ -1,0 +1,6 @@
+mesh: "/builtins/assets/meshes/quad.dae"
+material: "/components/planets/ice_world/lakes.material"
+skeleton: ""
+animations: ""
+default_animation: ""
+name: "unnamed"

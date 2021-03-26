@@ -1,0 +1,94 @@
+local config = require("scripts.config")
+
+local planet = msg.url()
+local clouds = msg.url()
+
+local planet_size = 0.0
+local planet_time_speed = 0.0
+
+local cloud_size = 0.0
+local cloud_time_speed = 0
+
+local time = 1000.0
+
+local function set_seed()
+    go.set(planet, "generic.x", config.rseed)
+    go.set(clouds, "generic.x", config.rseed)
+    go.set(clouds, "modify.x", rnd.double_range(0.28, 0.5))
+end
+
+local function set_pixel()
+    go.set(planet, "transform.y", config.rpixel)
+    go.set(clouds, "transform.y", config.rpixel)
+end
+
+local function set_rotation()
+    go.set(planet, "transform.z", config.rrot)
+    go.set(clouds, "transform.z", config.rrot)
+end
+
+local function set_light()
+    go.set(planet, "lights.x", config.rlight.x)
+    go.set(planet, "lights.y", config.rlight.y)
+
+    go.set(clouds, "lights.x", config.rlight.x)
+    go.set(clouds, "lights.y", config.rlight.y)
+end
+
+local function planet_init()
+    go.set(planet, "transform", vmath.vector4(9.0, 100.0, 0.0, 1.0))
+    go.set(planet, "generic", vmath.vector4(5.939, 0.0, 0.7, 5.0))
+    go.set(planet, "modify", vmath.vector4(0.0, 1.3, 0.0, 0.0))
+    go.set(planet, "border", vmath.vector4(0.692, 0.666, 0.0, 0.0))
+    go.set(planet, "lights", vmath.vector4(0.25, 0.25, 0.0, 0.0))
+    go.set(planet, "base_color", vmath.vector4(0.23, 0.13, 0.15, 1.0))
+    go.set(planet, "outline_color", vmath.vector4(0.23, 0.13, 0.15, 1.0))
+    go.set(planet, "shadow_base_color", vmath.vector4(0.13, 0.09, 0.11, 1.0))
+    go.set(planet, "shadow_outline_color", vmath.vector4(0.13, 0.09, 0.11, 1.0))
+
+    go.set(clouds, "transform", vmath.vector4(9.0, 100, 0.0, 1.0))
+    go.set(clouds, "generic", vmath.vector4(5.939, 0.0, 0.47, 5.0))
+    go.set(clouds, "modify", vmath.vector4(0.538, 1.3, 0.0, 0.0))
+    go.set(clouds, "border", vmath.vector4(0.439, 0.746, 0.0, 0.0))
+    go.set(clouds, "lights", vmath.vector4(0.25, 0.25, 0.0, 0.0))
+    go.set(clouds, "base_color", vmath.vector4(0.94, 0.71, 0.25, 1.0))
+    go.set(clouds, "outline_color", vmath.vector4(0.81, 0.46, 0.17, 1.0))
+    go.set(clouds, "shadow_base_color", vmath.vector4(0.67, 0.32, 0.19, 1.0))
+    go.set(clouds, "shadow_outline_color", vmath.vector4(0.49, 0.22, 0.2, 1.0))
+end
+
+function init(self)
+    planet = msg.url("gas_planet#gas_planet")
+    clouds = msg.url("clouds#clouds")
+    planet_init()
+
+    set_seed()
+    set_pixel()
+    set_rotation()
+
+    planet_size = go.get(planet, "transform.x")
+    planet_time_speed = go.get(planet, "generic.z")
+    planet_size = config.round(planet_size * 2.0) / planet_time_speed
+
+    cloud_size = go.get(clouds, "transform.x")
+    cloud_time_speed = go.get(clouds, "generic.z")
+    cloud_size = config.round(cloud_size * 2.0) / cloud_time_speed
+end
+
+function update(self, dt)
+    time = time + dt
+    go.set(planet, "generic.y", time * planet_size * 0.005)
+    go.set(clouds, "generic.y", time * cloud_size * 0.005)
+end
+
+function on_message(self, message_id, message, sender)
+    if message_id == config.msg.set_planet_seed then
+        set_seed()
+    elseif message_id == config.msg.set_planet_pixel then
+        set_pixel()
+    elseif message_id == config.msg.set_planet_rotation then
+        set_rotation()
+    elseif message_id == config.msg.set_planet_light then
+        set_light()
+    end
+end

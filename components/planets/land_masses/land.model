@@ -1,0 +1,6 @@
+mesh: "/builtins/assets/meshes/quad.dae"
+material: "/components/planets/land_masses/land_masses.material"
+skeleton: ""
+animations: ""
+default_animation: ""
+name: "unnamed"

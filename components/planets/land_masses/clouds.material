@@ -1,0 +1,115 @@
+name: "Clouds"
+tags: "model"
+vertex_program: "/components/planets/planets.vp"
+fragment_program: "/components/planets/land_masses/clouds.fp"
+vertex_space: VERTEX_SPACE_LOCAL
+vertex_constants {
+  name: "mtx_worldview"
+  type: CONSTANT_TYPE_WORLDVIEW
+  value {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 0.0
+  }
+}
+vertex_constants {
+  name: "mtx_proj"
+  type: CONSTANT_TYPE_PROJECTION
+  value {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 0.0
+  }
+}
+fragment_constants {
+  name: "transform"
+  type: CONSTANT_TYPE_USER
+  value {
+    x: 7.745
+    y: 100.0
+    z: 0.0
+    w: 2.0
+  }
+}
+fragment_constants {
+  name: "generic"
+  type: CONSTANT_TYPE_USER
+  value {
+    x: 5.939
+    y: 0.0
+    z: 0.47
+    w: 2.0
+  }
+}
+fragment_constants {
+  name: "border"
+  type: CONSTANT_TYPE_USER
+  value {
+    x: 0.52
+    y: 0.62
+    z: 0.0
+    w: 0.0
+  }
+}
+fragment_constants {
+  name: "modify"
+  type: CONSTANT_TYPE_USER
+  value {
+    x: 0.415
+    y: 1.3
+    z: 0.0
+    w: 0.0
+  }
+}
+fragment_constants {
+  name: "lights"
+  type: CONSTANT_TYPE_USER
+  value {
+    x: 0.39
+    y: 0.39
+    z: 0.0
+    w: 0.0
+  }
+}
+fragment_constants {
+  name: "base_color"
+  type: CONSTANT_TYPE_USER
+  value {
+    x: 0.87
+    y: 0.88
+    z: 0.91
+    w: 1.0
+  }
+}
+fragment_constants {
+  name: "outline_color"
+  type: CONSTANT_TYPE_USER
+  value {
+    x: 0.64
+    y: 0.65
+    z: 0.76
+    w: 1.0
+  }
+}
+fragment_constants {
+  name: "shadow_base_color"
+  type: CONSTANT_TYPE_USER
+  value {
+    x: 0.41
+    y: 0.44
+    z: 0.6
+    w: 1.0
+  }
+}
+fragment_constants {
+  name: "shadow_outline_color"
+  type: CONSTANT_TYPE_USER
+  value {
+    x: 0.25
+    y: 0.29
+    z: 0.45
+    w: 1.0
+  }
+}

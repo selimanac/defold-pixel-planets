@@ -1,0 +1,39 @@
+local config = require("scripts.config")
+
+local planet = msg.url()
+
+local function set_seed()
+    go.set(planet, "generic.x", config.rseed)
+end
+
+local function set_pixel()
+    go.set(planet, "transform.y", config.rpixel)
+end
+
+local function set_rotation()
+    go.set(planet, "transform.z", config.rrot)
+end
+
+local function set_light()
+    go.set(planet, "lights.x", config.rlight.x)
+    go.set(planet, "lights.y", config.rlight.y)
+end
+
+function init(self)
+    planet = msg.url("asteroid#asteroid")
+    set_seed()
+    set_pixel()
+    set_rotation()
+end
+
+function on_message(self, message_id, message, sender)
+    if message_id == config.msg.set_planet_seed then
+        set_seed()
+    elseif message_id == config.msg.set_planet_pixel then
+        set_pixel()
+    elseif message_id == config.msg.set_planet_rotation then
+        set_rotation()
+    elseif message_id == config.msg.set_planet_light then
+        set_light()
+    end
+end

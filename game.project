@@ -1,0 +1,59 @@
+[project]
+title = defold-pixel-planets
+version = 1.0
+dependencies = https://github.com/selimanac/defold-random/archive/master.zip
+bundle_exclude_resources = assets/raw
+developer = Selim Anac
+
+[bootstrap]
+main_collection = /main/main.collectionc
+render = /render/pixelplanet.renderc
+
+[input]
+game_binding = /input/game.input_bindingc
+use_accelerometer = 0
+
+[display]
+width = 640
+height = 360
+high_dpi = 0
+display_device_info = 1
+vsync = 1
+
+[script]
+shared_state = 1
+
+[windows]
+app_icon = /assets/app_icons/appicon.ico
+
+[osx]
+app_icon = /assets/app_icons/appicon.icns
+
+[android]
+input_method = HiddenInputField
+
+[physics]
+gravity_y = -1000.0
+scale = 0.01
+
+[graphics]
+default_texture_min_filter = nearest
+default_texture_mag_filter = nearest
+texture_profiles = /graphics/pixelplanet.texture_profiles
+max_debug_vertices = 100000
+
+[sprite]
+subpixels = 0
+
+[render]
+clear_color_red = 0.0
+
+[native_extension]
+app_manifest = /vulkan.appmanifest
+
+[shader]
+output_spirv = 1
+
+[profiler]
+track_cpu = 0
+

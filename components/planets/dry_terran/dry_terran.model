@@ -1,0 +1,7 @@
+mesh: "/builtins/assets/meshes/quad.dae"
+material: "/components/planets/dry_terran/dry_terran.material"
+textures: "/components/planets/dry_terran/dry_terran.png"
+skeleton: ""
+animations: ""
+default_animation: ""
+name: "unnamed"

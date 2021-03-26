@@ -1,0 +1,6 @@
+mesh: "/builtins/assets/meshes/quad.dae"
+material: "/components/planets/no_atmosphere/no_atmosphere.material"
+skeleton: ""
+animations: ""
+default_animation: ""
+name: "unnamed"

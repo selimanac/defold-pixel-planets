@@ -1,0 +1,6 @@
+mesh: "/builtins/assets/meshes/quad.dae"
+material: "/components/planets/land_masses/planet_under.material"
+skeleton: ""
+animations: ""
+default_animation: ""
+name: "unnamed"

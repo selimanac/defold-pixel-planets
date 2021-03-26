@@ -1,0 +1,80 @@
+local config = require("scripts.config")
+
+local planet = msg.url()
+local star_blobs = msg.url()
+local star_flares = msg.url()
+
+local planet_size = 0.0
+local planet_time_speed = 0.0
+
+local star_blobs_size = 0.0
+local star_blobs_speed = 0
+
+local star_flares_size = 0.0
+local star_flares_time_speed = 0
+
+local time = 1000.0
+
+local function set_seed()
+    go.set(planet, "generic.x", config.rseed)
+    go.set(star_blobs, "generic.x", config.rseed)
+    go.set(star_flares, "generic.x", config.rseed)
+end
+
+local function set_pixel()
+    go.set(planet, "transform.y", config.rpixel)
+    go.set(star_blobs, "transform.y", config.rpixel * 1.0)
+    go.set(star_flares, "transform.y", config.rpixel* 1.0)
+end
+
+local function set_rotation()
+    go.set(planet, "transform.z", config.rrot)
+    go.set(star_blobs, "transform.z", config.rrot)
+    go.set(star_flares, "transform.z", config.rrot)
+end
+
+local function set_light()
+    
+end
+
+
+function init(self)
+    planet = msg.url("star#star")
+    star_blobs = msg.url("star_blobs#star_blobs")-- StarBackground
+    star_flares = msg.url("star_flares#star_flares") 
+
+    set_seed()
+    set_pixel()
+    set_rotation()
+
+    planet_size = go.get(planet, "transform.x")
+    planet_time_speed = go.get(planet, "generic.z")
+    planet_size = config.round(planet_size * 2.0) / planet_time_speed
+
+    star_blobs_size = go.get(star_blobs, "transform.x")
+    star_blobs_speed = go.get(star_blobs, "generic.z")
+    star_blobs_size = config.round(star_blobs_size * 2.0) / star_blobs_speed
+
+    star_flares_size = go.get(star_flares, "transform.x")
+    star_flares_time_speed = go.get(star_flares, "generic.z")
+    star_flares_size = config.round(star_flares_size * 2.0) / star_flares_time_speed
+end
+
+function update(self, dt)
+    time = time + dt
+    go.set(planet, "generic.y", time * planet_size * 0.001)
+    go.set(star_blobs, "generic.y", time * star_blobs_size * 0.01)
+    go.set(star_flares, "generic.y", time * star_flares_size * 0.015)
+end
+
+function on_message(self, message_id, message, sender)
+    if message_id == config.msg.set_planet_seed then
+        set_seed()
+    elseif message_id == config.msg.set_planet_pixel then
+        set_pixel()
+    elseif message_id == config.msg.set_planet_rotation then
+        set_rotation()
+    elseif message_id == config.msg.set_planet_light then
+        set_light()
+    end
+end

@@ -1,0 +1,42 @@
+local config = require("scripts.config")
+
+local background = msg.url("main", "/background", "background")
+local paricles = msg.url("main", "/particles", "stars")
+local background_time = vmath.vector4()
+local target_pos = vmath.vector3()
+local planet_ids = {}
+
+local function load_collection(id)
+    if config.planets[config.current_planet].collection then
+        go.delete_all(config.planets[config.current_planet].collection)
+    end
+
+    config.current_planet = id
+
+    local name = "/collections#planet_" .. id
+
+    config.planets[id].collection = collectionfactory.create(name, target_pos, nil, nil, vmath.vector3(2.5, 2.5, 1))
+    config.target_script = config.planets[config.current_planet].collection[hash("/scripts")]
+end
+
+function init(self)
+    msg.post(".", "acquire_input_focus")
+    msg.post("@render:", "set_size", {width = 640, height = 360})
+    particlefx.play(paricles)
+
+   profiler.enable_ui(true)
+
+    config.main_url = msg.url()
+    target_pos = go.get_position("target")
+end
+
+function on_message(self, message_id, message, sender)
+    if message_id == config.msg.load_planet then
+        load_collection(message.id)
+    end
+end
+
+function update(self, dt)
+    background_time.x = background_time.x + dt
+    go.set(background, "time", background_time)
+end
