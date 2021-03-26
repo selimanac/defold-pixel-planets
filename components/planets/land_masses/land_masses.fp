@@ -12,6 +12,10 @@ uniform lowp vec4 col2;
 uniform lowp vec4 col3;
 uniform lowp vec4 col4;
 
+const lowp vec2 dir_x = vec2(1.0, 0.0);
+const lowp vec2 dir_y = vec2(0.0, 1.0);
+const lowp vec2 dir_z = vec2(1.0, 1.0);
+
 float rand(vec2 coord)
 {
     // land has to be tiled (or the contintents on this planet have to be changing very fast)
@@ -28,10 +32,9 @@ float noise(vec2 coord)
     vec2 f = fract(coord);
 
     float a = rand(i);
-    float b = rand(i + vec2(1.0, 0.0));
-    float c = rand(i + vec2(0.0, 1.0));
-    float d = rand(i + vec2(1.0, 1.0));
-
+    float b = rand(i + dir_x);
+    float c = rand(i + dir_y);
+    float d = rand(i + dir_z);
     vec2 cubic = f * f * (3.0 - 2.0 * f);
 
     return mix(a, b, cubic.x) + (c - a) * cubic.y * (1.0 - cubic.x) + (d - b) * cubic.x * cubic.y;

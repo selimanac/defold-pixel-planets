@@ -7,6 +7,10 @@ uniform lowp vec4 circles;
 
 uniform lowp vec4 color;
 
+const lowp vec2 dir_x = vec2(1.0, 0.0);
+const lowp vec2 dir_y = vec2(0.0, 1.0);
+const lowp vec2 dir_z = vec2(1.0, 1.0);
+
 float rand(vec2 co)
 {
     co = mod(co, vec2(1.0, 1.0) * floor(transform.x + 0.5));
@@ -42,9 +46,9 @@ float noise(vec2 coord)
     vec2 f = fract(coord);
 
     float a = rand(i);
-    float b = rand(i + vec2(1.0, 0.0));
-    float c = rand(i + vec2(0.0, 1.0));
-    float d = rand(i + vec2(1.0, 1.0));
+    float b = rand(i + dir_x);
+    float c = rand(i + dir_y);
+    float d = rand(i + dir_z);
 
     vec2 cubic = f * f * (3.0 - 2.0 * f);
 

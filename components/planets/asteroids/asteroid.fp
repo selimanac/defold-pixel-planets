@@ -7,6 +7,10 @@ uniform lowp vec4 color1;
 uniform lowp vec4 color2;
 uniform lowp vec4 color3;
 
+const lowp vec2 dir_x = vec2(1.0, 0.0);
+const lowp vec2 dir_y = vec2(0.0, 1.0);
+const lowp vec2 dir_z = vec2(1.0, 1.0);
+
 float rand(vec2 coord)
 {
     return fract(sin(dot(coord.xy, vec2(12.9898, 78.233))) * 43758.5453 * generic.x);
@@ -18,9 +22,9 @@ float noise(vec2 coord)
     vec2 f = fract(coord);
 
     float a = rand(i);
-    float b = rand(i + vec2(1.0, 0.0));
-    float c = rand(i + vec2(0.0, 1.0));
-    float d = rand(i + vec2(1.0, 1.0));
+    float b = rand(i + dir_x);
+    float c = rand(i + dir_y);
+    float d = rand(i + dir_z);
 
     vec2 cubic = f * f * (3.0 - 2.0 * f);
 
@@ -38,7 +42,7 @@ float fbm(vec2 coord)
         coord *= 2.0;
         scale *= 0.5;
     }
-    
+
     return value;
 }
 
@@ -112,7 +116,7 @@ void main()
 
     lowp vec3 c = mix(color2.rgb, color1.rgb, float(noise_rel < -0.06 || (noise_rel < -0.04 && dith)));
     c = mix(c, color3.rgb, float(noise_rel > 0.05 || (noise_rel > 0.03 && dith)));
-    //crates
+    // crates
     c = mix(c, color2.rgb, float(c1 > 0.4));
     c = mix(c, color3.rgb, float(c2 < c1));
 

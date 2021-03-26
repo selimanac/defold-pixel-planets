@@ -8,7 +8,8 @@ Pixel Planet shaders originally created by [Deep-Fold](https://deep-fold.itch.io
 See it in action: https://selimanac.itch.io/defold-pixel-planet-generator
 
 Please visit his itch.io project page here: https://deep-fold.itch.io/pixel-planet-generator  
-All credit geos to [Deep-Fold](https://deep-fold.itch.io/)  
+All credit goes to [Deep-Fold](https://deep-fold.itch.io/)  
+Thanks to [@britz](https://twitter.com/bjornritzl) for [lowrez](https://github.com/britzl/lowrezjam-template) template.
 
 ### Uniforms
 No logic here...
