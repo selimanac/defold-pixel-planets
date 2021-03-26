@@ -7,8 +7,8 @@ Pixel Planet shaders originally created by [Deep-Fold](https://deep-fold.itch.io
 
 See it in action: https://selimanac.itch.io/defold-pixel-planet-generator
 
-Please visit his itch.io project page here: https://deep-fold.itch.io/pixel-planet-generator
-All credit geos to Deep-Fold
+Please visit his itch.io project page here: https://deep-fold.itch.io/pixel-planet-generator  
+All credit geos to [Deep-Fold](https://deep-fold.itch.io/)  
 
 ### Uniforms
 No logic here...
