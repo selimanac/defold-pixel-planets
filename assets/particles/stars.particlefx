@@ -20,7 +20,7 @@ emitters {
   blend_mode: BLEND_MODE_ADD
   particle_orientation: PARTICLE_ORIENTATION_DEFAULT
   inherit_velocity: 0.0
-  max_particle_count: 20
+  max_particle_count: 50
   type: EMITTER_TYPE_BOX
   start_delay: 0.0
   properties {
@@ -91,12 +91,36 @@ emitters {
       t_x: 1.0
       t_y: 0.0
     }
+    points {
+      x: 0.4354523
+      y: 12.132075
+      t_x: 1.0
+      t_y: 0.0
+    }
+    points {
+      x: 1.0
+      y: 5.0
+      t_x: 1.0
+      t_y: 0.0
+    }
     spread: 10.0
   }
   properties {
     key: EMITTER_KEY_PARTICLE_RED
     points {
       x: 0.0
+      y: 0.1
+      t_x: 0.022106932
+      t_y: 0.9997556
+    }
+    points {
+      x: 0.20660147
+      y: -1.909114
+      t_x: 0.11750233
+      t_y: -0.9930726
+    }
+    points {
+      x: 1.0
       y: 0.1
       t_x: 1.0
       t_y: 0.0
@@ -218,8 +242,8 @@ emitters {
       t_y: 0.995452
     }
     points {
-      x: 0.46070796
-      y: 1.846318
+      x: 0.39762726
+      y: 5.5881615
       t_x: 0.8566377
       t_y: 0.51591843
     }
@@ -294,7 +318,7 @@ emitters {
   blend_mode: BLEND_MODE_ADD
   particle_orientation: PARTICLE_ORIENTATION_DEFAULT
   inherit_velocity: 0.0
-  max_particle_count: 20
+  max_particle_count: 50
   type: EMITTER_TYPE_BOX
   start_delay: 0.0
   properties {
@@ -361,6 +385,18 @@ emitters {
     key: EMITTER_KEY_PARTICLE_SIZE
     points {
       x: 0.0
+      y: 8.571743
+      t_x: 1.0
+      t_y: 0.0
+    }
+    points {
+      x: 0.63056237
+      y: 14.08876
+      t_x: 1.0
+      t_y: 0.0
+    }
+    points {
+      x: 1.0
       y: 5.0
       t_x: 1.0
       t_y: 0.0
@@ -381,6 +417,18 @@ emitters {
     key: EMITTER_KEY_PARTICLE_GREEN
     points {
       x: 0.0
+      y: 0.8
+      t_x: 1.0
+      t_y: 0.0
+    }
+    points {
+      x: 0.35476774
+      y: -7.223585
+      t_x: 1.0
+      t_y: 0.0
+    }
+    points {
+      x: 1.0
       y: 0.8
       t_x: 1.0
       t_y: 0.0
@@ -492,8 +540,8 @@ emitters {
       t_y: 0.995452
     }
     points {
-      x: 0.4161062
-      y: 2.2549667
+      x: 0.3955683
+      y: 5.99788
       t_x: 0.8566377
       t_y: 0.51591843
     }
@@ -568,7 +616,7 @@ emitters {
   blend_mode: BLEND_MODE_ADD
   particle_orientation: PARTICLE_ORIENTATION_DEFAULT
   inherit_velocity: 0.0
-  max_particle_count: 20
+  max_particle_count: 50
   type: EMITTER_TYPE_BOX
   start_delay: 0.0
   properties {
@@ -665,6 +713,18 @@ emitters {
     key: EMITTER_KEY_PARTICLE_BLUE
     points {
       x: 0.0
+      y: 0.8
+      t_x: 1.0
+      t_y: 0.0
+    }
+    points {
+      x: 0.36943766
+      y: -4.188174
+      t_x: 1.0
+      t_y: 0.0
+    }
+    points {
+      x: 1.0
       y: 0.8
       t_x: 1.0
       t_y: 0.0
@@ -766,8 +826,8 @@ emitters {
       t_y: 0.995452
     }
     points {
-      x: 0.4161062
-      y: 2.2549667
+      x: 0.3163507
+      y: 4.2155743
       t_x: 0.8566377
       t_y: 0.51591843
     }

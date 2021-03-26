@@ -46,7 +46,10 @@ max_debug_vertices = 100000
 subpixels = 0
 
 [render]
-clear_color_red = 0.0
+clear_color_red = 0.17
+clear_color_green = 0.21
+clear_color_blue = 0.3
+clear_color_alpha = 0.0
 
 [native_extension]
 app_manifest = /vulkan.appmanifest
@@ -56,4 +59,8 @@ output_spirv = 1
 
 [profiler]
 track_cpu = 0
+
+[html5]
+scale_mode = fit
+cssfile = /builtins/manifests/web/dark_theme.css
 

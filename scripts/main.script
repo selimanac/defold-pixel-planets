@@ -22,9 +22,10 @@ end
 function init(self)
     msg.post(".", "acquire_input_focus")
     msg.post("@render:", "set_size", {width = 640, height = 360})
+
     particlefx.play(paricles)
 
-   profiler.enable_ui(true)
+    --profiler.enable_ui(true)
 
     config.main_url = msg.url()
     target_pos = go.get_position("target")
